@@ -1,0 +1,27 @@
+# Finder
+.DS_Store
+
+# Xcode
+xcuserdata
+*.xcodeproj
+
+# Visual Studio
+.vs
+
+# Visual Studio Code
+.vscode
+
+# JetBrains IDEs
+.idea
+
+# clangd
+.cache
+.clangd
+
+# SwiftPM
+.build
+.swiftpm
+
+# CMake
+CMakeCache.txt
+CMakeFiles
