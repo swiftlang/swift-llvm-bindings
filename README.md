@@ -48,3 +48,17 @@ To build the bindings for a specific LLVM module (e.g. `LLVM_Utils`), run:
 ```
 cmake --build {PATH_TO_BUILD_ROOT} --target LLVM_Utils
 ```
+
+## Branching scheme
+
+| apple/swift-llvm-bindings | apple/llvm-project | llvm/llvm-project |
+|---------------------------|--------------------|-------------------|
+| llvm.org/main             |                    | main              |
+| stable/YYYYMMDD           | stable/YYYYMMDD    |                   |
+
+If you are working on a feature that you intend to use in SwiftCompilerSources,
+you should create pull requests against `llvm.org/main` and `stable/YYYYMMDD`
+branches. If you are merging the pull requests yourself, please make sure you
+merge the pull request to `llvm.org/main` first.
+
+Otherwise, you should create pull requests against `llvm.org/main` only.
