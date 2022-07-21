@@ -14,10 +14,17 @@
 
 extension String {
   public func withStringRef<Result>(_ body: (llvm.StringRef) -> Result) -> Result {
-    let ref = llvm.StringRef(self)
-    let result = withExtendedLifetime(ref) {
-      body(ref)
+    var str = self
+    return str.withUTF8 { buffer in
+      return body(llvm.StringRef(buffer.baseAddress, buffer.count))
     }
-    return result
+  }
+}
+
+extension StaticString {
+  public func withStringRef<Result>(_ body: (llvm.StringRef) -> Result) -> Result {
+    return self.withUTF8Buffer { buffer in
+      return body(llvm.StringRef(buffer.baseAddress, buffer.count))
+    }
   }
 }
