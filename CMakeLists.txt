@@ -13,5 +13,7 @@ if(CMAKE_Swift_COMPILER_VERSION VERSION_LESS "${min_supported_swift_version}")
 endif()
 
 find_package(LLVM CONFIG REQUIRED)
+message(STATUS "Found LLVM headers: ${LLVM_MAIN_INCLUDE_DIR}")
+message(STATUS "Found LLVM generated headers: ${LLVM_INCLUDE_DIR}")
 
 add_subdirectory(Sources)
