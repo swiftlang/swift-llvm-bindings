@@ -51,14 +51,17 @@ cmake --build {PATH_TO_BUILD_ROOT} --target LLVM_Utils
 
 ## Branching scheme
 
-| apple/swift-llvm-bindings | apple/llvm-project | llvm/llvm-project |
-|---------------------------|--------------------|-------------------|
-| llvm.org/main             |                    | main              |
-| stable/YYYYMMDD           | stable/YYYYMMDD    |                   |
+`llvm.org/main` branch tracks the `main` branch
+of ([llvm/llvm-project](https://github.com/llvm/llvm-project)).
+
+`stable/YYYYMMDD` branch tracks the corresponding `stable/YYYYMMDD` branch
+of ([apple/llvm-project](https://github.com/apple/llvm-project)).
+
+## Contributing
 
 If you are working on a feature that you intend to use in SwiftCompilerSources,
-you should create pull requests against `llvm.org/main` and `stable/YYYYMMDD`
-branches. If you are merging the pull requests yourself, please make sure you
-merge the pull request to `llvm.org/main` first.
+you should create pull requests against two branches: `llvm.org/main`
+and `stable/YYYYMMDD`. If you are merging the pull requests yourself, please
+make sure you merge the pull request to `llvm.org/main` branch first.
 
-Otherwise, you should create pull requests against `llvm.org/main` only.
+Otherwise, you should create pull requests against `llvm.org/main` branch only.
