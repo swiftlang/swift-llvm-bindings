@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(SwiftLLVMBindings LANGUAGES Swift)
+project(SwiftLLVMBindings LANGUAGES C Swift)
 
 if(CMAKE_SYSTEM_NAME STREQUAL Windows OR CMAKE_SYSTEM_NAME STREQUAL Darwin)
   option(BUILD_SHARED_LIBS "Build shared libraries by default" YES)
