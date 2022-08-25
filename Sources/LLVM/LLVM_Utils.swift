@@ -12,6 +12,9 @@
 
 @_exported import LLVM_Utils // Clang module
 
+// FIXME: rdar://99146607
+var _anchor: llvm.StringRef { return llvm.StringRef() }
+
 extension String {
   public func withStringRef<Result>(_ body: (llvm.StringRef) -> Result) -> Result {
     var str = self
