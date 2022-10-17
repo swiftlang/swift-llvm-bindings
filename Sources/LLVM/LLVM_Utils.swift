@@ -29,6 +29,16 @@ extension StaticString {
   }
 }
 
+public func ==(lhs: llvm.StringRef, rhs: StaticString) -> Bool {
+  let lhsBuffer = UnsafeBufferPointer<UInt8>(
+    start: lhs.__bytes_beginUnsafe(),
+    count: Int(lhs.__bytes_endUnsafe() - lhs.__bytes_beginUnsafe()))
+  return rhs.withUTF8Buffer { (rhsBuffer: UnsafeBufferPointer<UInt8>) in
+    if lhsBuffer.count != rhsBuffer.count { return false }
+    return lhsBuffer.elementsEqual(rhsBuffer, by: ==)
+  }
+}
+
 extension llvm.Twine: ExpressibleByStringLiteral {
   public init(stringLiteral value: String) {
     self.init(value)
