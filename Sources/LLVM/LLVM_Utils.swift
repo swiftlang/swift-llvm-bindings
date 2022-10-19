@@ -13,6 +13,10 @@
 @_exported import LLVM_Utils // Clang module
 
 extension String {
+  public init(_ stringRef: llvm.StringRef) {
+    self.init(cxxString: stringRef.str())
+  }
+
   public func withStringRef<Result>(_ body: (llvm.StringRef) -> Result) -> Result {
     var str = self
     return str.withUTF8 { buffer in
