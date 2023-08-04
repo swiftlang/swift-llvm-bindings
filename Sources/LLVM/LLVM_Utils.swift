@@ -34,9 +34,15 @@ extension StaticString {
 }
 
 public func ==(lhs: llvm.StringRef, rhs: StaticString) -> Bool {
+#if $NewCxxMethodSafetyHeuristics
+  let lhsBuffer = UnsafeBufferPointer<UInt8>(
+    start: lhs.bytes_begin(),
+    count: Int(lhs.bytes_end() - lhs.bytes_begin()))
+#else
   let lhsBuffer = UnsafeBufferPointer<UInt8>(
     start: lhs.__bytes_beginUnsafe(),
     count: Int(lhs.__bytes_endUnsafe() - lhs.__bytes_beginUnsafe()))
+#endif
   return rhs.withUTF8Buffer { (rhsBuffer: UnsafeBufferPointer<UInt8>) in
     if lhsBuffer.count != rhsBuffer.count { return false }
     return lhsBuffer.elementsEqual(rhsBuffer, by: ==)
