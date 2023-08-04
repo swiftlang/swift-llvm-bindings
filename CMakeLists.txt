@@ -6,7 +6,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL Windows)
   option(BUILD_SHARED_LIBS "Build shared libraries by default" YES)
 endif()
 
-set(min_supported_swift_version 5.8)
+set(min_supported_swift_version 5.9)
 if(CMAKE_Swift_COMPILER_VERSION VERSION_LESS "${min_supported_swift_version}")
   message(FATAL_ERROR "Outdated Swift compiler: "
       "Swift ${min_supported_swift_version} or newer is required.")
