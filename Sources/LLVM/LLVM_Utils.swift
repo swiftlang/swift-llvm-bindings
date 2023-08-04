@@ -14,7 +14,7 @@
 
 extension String {
   public init(_ stringRef: llvm.StringRef) {
-    self.init(cxxString: stringRef.str())
+    self.init(stringRef.str())
   }
 
   public func withStringRef<Result>(_ body: (llvm.StringRef) -> Result) -> Result {
