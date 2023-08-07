@@ -33,6 +33,12 @@ extension StaticString {
   }
 }
 
+extension std.string {
+  public init(_ stringRef: llvm.StringRef) {
+    self = stringRef.str()
+  }
+}
+
 public func ==(lhs: llvm.StringRef, rhs: StaticString) -> Bool {
 #if $NewCxxMethodSafetyHeuristics
   let lhsBuffer = UnsafeBufferPointer<UInt8>(
