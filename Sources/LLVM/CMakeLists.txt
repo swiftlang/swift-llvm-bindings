@@ -3,7 +3,7 @@ add_library(LLVM_Utils
 target_compile_options(LLVM_Utils PUBLIC
     "-emit-module"
     "-Xcc" "-std=c++17"
-    "-Xfrontend" "-enable-experimental-cxx-interop")
+    "-cxx-interoperability-mode=default")
 target_include_directories(LLVM_Utils PUBLIC
     "${LLVM_MAIN_INCLUDE_DIR}"
     "${LLVM_INCLUDE_DIR}")
