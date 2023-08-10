@@ -9,10 +9,16 @@ let env = ProcessInfo.processInfo.environment
 func getLLVMSwiftSettings() -> [SwiftSetting]? {
     let env = ProcessInfo.processInfo.environment
     guard let llvmHeaderPath = env["SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_HEADERS"] else {
+        print("please pass an environment variable to swift-package: " +
+              "SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_HEADERS " +
+              "(e.g. swift/llvm-project/llvm/include)")
         return nil
     }
     let llvmModuleMapPath = "\(llvmHeaderPath)/llvm/module.modulemap"
     guard let llvmGeneratedHeaderPath = env["SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_GENERATED_HEADERS"] else {
+        print("please pass an environment variable to swift-package: " +
+              "SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_GENERATED_HEADERS " +
+              "(e.g. swift/build/Ninja-DebugAssert/llvm-macosx-arm64/include)")
         return nil
     }
 
