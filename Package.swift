@@ -6,28 +6,33 @@ import class Foundation.ProcessInfo
 
 let env = ProcessInfo.processInfo.environment
 
-guard let llvmHeaderPath = env["SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_HEADERS"] else {
-  fatalError("please pass an environment variable to swift-package: " +
-               "SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_HEADERS " +
-               "(e.g. swift/llvm-project/llvm/include)")
-}
-let llvmModuleMapPath = "\(llvmHeaderPath)/llvm/module.modulemap"
-guard let llvmGeneratedHeaderPath = env["SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_GENERATED_HEADERS"] else {
-  fatalError("please pass an environment variable to swift-package: " +
-               "SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_GENERATED_HEADERS " +
-               "(e.g. swift/build/Ninja-DebugAssert/llvm-macosx-arm64/include)")
-}
+func getLLVMSwiftSettings() -> [SwiftSetting]? {
+    let env = ProcessInfo.processInfo.environment
+    guard let llvmHeaderPath = env["SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_HEADERS"] else {
+        print("please pass an environment variable to swift-package: " +
+              "SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_HEADERS " +
+              "(e.g. swift/llvm-project/llvm/include)")
+        return nil
+    }
+    let llvmModuleMapPath = "\(llvmHeaderPath)/llvm/module.modulemap"
+    guard let llvmGeneratedHeaderPath = env["SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_GENERATED_HEADERS"] else {
+        print("please pass an environment variable to swift-package: " +
+              "SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_GENERATED_HEADERS " +
+              "(e.g. swift/build/Ninja-DebugAssert/llvm-macosx-arm64/include)")
+        return nil
+    }
 
-let llvmSwiftSettings: [SwiftSetting] = [
-  .interoperabilityMode(.Cxx),
-  .unsafeFlags([
-                 "-I\(llvmHeaderPath)",
-                 "-Xcc", "-I\(llvmHeaderPath)",
-                 "-I\(llvmGeneratedHeaderPath)",
-                 "-Xcc", "-I\(llvmGeneratedHeaderPath)",
-                 "-Xcc", "-fmodule-map-file=\(llvmModuleMapPath)",
-               ]),
-]
+    return [
+        .interoperabilityMode(.Cxx),
+        .unsafeFlags([
+             "-I\(llvmHeaderPath)",
+             "-Xcc", "-I\(llvmHeaderPath)",
+             "-I\(llvmGeneratedHeaderPath)",
+             "-Xcc", "-I\(llvmGeneratedHeaderPath)",
+             "-Xcc", "-fmodule-map-file=\(llvmModuleMapPath)",
+        ]),
+    ]
+}
 
 let package = Package(
   name: "SwiftLLVMBindings",
@@ -40,7 +45,7 @@ let package = Package(
       path: "Sources/LLVM",
       exclude: ["CMakeLists.txt"],
       sources: ["LLVM_Utils.swift"],
-      swiftSettings: llvmSwiftSettings
+      swiftSettings: getLLVMSwiftSettings()
     ),
   ],
   cxxLanguageStandard: .cxx17
