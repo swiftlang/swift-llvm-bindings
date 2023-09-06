@@ -2,7 +2,8 @@ add_library(LLVM_Utils
     LLVM_Utils.swift)
 target_compile_options(LLVM_Utils PUBLIC
     "-emit-module"
-    "-Xfrontend" "-enable-experimental-cxx-interop")
+    "SHELL:-Xcc -std=c++17"
+    "-cxx-interoperability-mode=default")
 target_include_directories(LLVM_Utils PUBLIC
     "${LLVM_MAIN_INCLUDE_DIR}"
     "${LLVM_INCLUDE_DIR}")
