@@ -1,0 +1,8 @@
+Name: LLVM_Utils
+Namespaces:
+- Name: llvm
+  Tags:
+  - Name: LLVMContext
+    SwiftImportAs: reference
+    SwiftRetainOp: immortal
+    SwiftReleaseOp: immortal
