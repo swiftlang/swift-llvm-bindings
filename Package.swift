@@ -14,7 +14,7 @@ func getLLVMSwiftSettings() -> [SwiftSetting]? {
               "(e.g. swift/llvm-project/llvm/include)")
         return nil
     }
-    let llvmModuleMapPath = "\(llvmHeaderPath)/llvm/module.modulemap"
+    let llvmModuleMapPath = "\(llvmHeaderPath)/module.modulemap"
     guard let llvmGeneratedHeaderPath = env["SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_GENERATED_HEADERS"] else {
         print("please pass an environment variable to swift-package: " +
               "SWIFT_LLVM_BINDINGS_PATH_TO_LLVM_GENERATED_HEADERS " +
