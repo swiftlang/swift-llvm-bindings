@@ -1,0 +1,8 @@
+Name: Clang_AST
+Namespaces:
+- Name: clang
+  Tags:
+  - Name: Decl
+    SwiftImportAs: reference
+    SwiftRetainOp: immortal
+    SwiftReleaseOp: immortal
