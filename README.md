@@ -17,9 +17,8 @@ Swift/C++ Interoperability evolves.
 
 ### As a standalone project
 
-A [Swift Development Snapshot](https://www.swift.org/download/#snapshots)
-toolchain is required to build the project. Using the latest available trunk
-snapshot is recommended.
+A [Swift toolchain](https://www.swift.org/download/) is required to build the
+project. The minimum supported Swift version is 5.9.
 
 Since the bindings rely on LLVM headers, you will need a fresh checkout of LLVM
 locally. Both upstream LLVM
@@ -33,7 +32,7 @@ process, run the following command:
 ```
 cmake -G Ninja \
       -D CMAKE_BUILD_TYPE=Debug \
-      -D CMAKE_Swift_COMPILER=/Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-{YYYY-MM-DD}.xctoolchain/usr/bin/swiftc \
+      -D CMAKE_Swift_COMPILER=/Library/Developer/Toolchains/swift-xyz.xctoolchain/usr/bin/swiftc \
       -D LLVM_DIR={PATH_TO_LLVM_BUILD_ROOT}/lib/cmake/llvm \
       -B {PATH_TO_BUILD_ROOT}
 ```
