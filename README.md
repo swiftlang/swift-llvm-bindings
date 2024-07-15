@@ -23,8 +23,8 @@ project. The minimum supported Swift version is 5.9.
 Since the bindings rely on LLVM headers, you will need a fresh checkout of LLVM
 locally. Both upstream LLVM
 ([llvm/llvm-project](https://github.com/llvm/llvm-project)) and Apple's
-LLVM fork ([apple/llvm-project](https://github.com/apple/llvm-project)) are
-supported.
+LLVM fork ([swiftlang/llvm-project](https://github.com/swiftlang/llvm-project))
+are supported.
 
 Similarly to LLVM, CMake is used to build the bindings. To configure the build
 process, run the following command:
@@ -55,7 +55,7 @@ cmake --build {PATH_TO_BUILD_ROOT} --target LLVM_Utils
 of ([llvm/llvm-project](https://github.com/llvm/llvm-project)).
 
 `stable/YYYYMMDD` branch tracks the corresponding `stable/YYYYMMDD` branch
-of ([apple/llvm-project](https://github.com/apple/llvm-project)).
+of ([swiftlang/llvm-project](https://github.com/swiftlang/llvm-project)).
 
 ## Contributing
 
