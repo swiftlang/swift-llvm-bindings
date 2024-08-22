@@ -43,7 +43,7 @@ let package = Package(
     .target(
       name: "SwiftLLVM_Utils",
       path: "Sources/LLVM",
-      exclude: ["CMakeLists.txt"],
+      exclude: ["CMakeLists.txt", "LLVM_Utils.apinotes"],
       sources: ["LLVM_Utils.swift"],
       swiftSettings: getLLVMSwiftSettings()
     ),
