@@ -18,7 +18,7 @@ Swift/C++ Interoperability evolves.
 ### As a standalone project
 
 A [Swift toolchain](https://www.swift.org/download/) is required to build the
-project. The minimum supported Swift version is 5.9.
+project. The minimum supported Swift version is 6.0.
 
 Since the bindings rely on LLVM headers, you will need a fresh checkout of LLVM
 locally. Both upstream LLVM
